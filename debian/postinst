@@ -1,0 +1,11 @@
+#! /bin/sh
+
+set -e
+
+# Share nicely with TinyFugue 4.x.
+update-alternatives --install /usr/bin/tf tf /usr/bin/tf5 15 \
+    --slave /usr/share/man/man1/tf.1.gz tf.1.gz /usr/share/man/man1/tf5.1.gz
+
+#DEBHELPER#
+
+exit 0

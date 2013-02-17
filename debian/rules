@@ -1,0 +1,22 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	autoconf
+	dh_auto_configure -- --disable-version --disable-version-symlink \
+	    --program-suffix=5 --datadir=\$${prefix}/share/tf5 \
+	    --enable-mailcheck=/var/mail --enable-256colors --enable-ssl
+
+override_dh_auto_build:
+	$(MAKE) STRIP=:
+
+override_dh_auto_clean:
+	$(MAKE) -f unix/Makefile distclean
+
+override_dh_auto_install:
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/tf5 STRIP=:
+	install -d $(CURDIR)/debian/tf5/usr/share/man/man1
+	install -m 644 src/tf.1.nroffman \
+	    $(CURDIR)/debian/tf5/usr/share/man/man1/tf5.1

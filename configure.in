@@ -294,14 +294,19 @@ if test "$enable_ssl" = "yes"; then
     old_CPPFLAGS="$CPPFLAGS"
     while true; do
 	dnl -lssl needs -lcrypto
-	dnl Try in default locations first, then /usr/local/ssl
+	dnl Try in default locations first, then /usr/local/ssl, then try the
+        dnl GnuTLS compatibility layer
 	LIBS="$LIBS -lssl -lcrypto"
 	AC_MSG_CHECKING([for libcrypto and libssl])
 	AC_TRY_LINK_FUNC(SSL_new, AC_MSG_RESULT([yes]),
 	    CFLAGS="$CFLAGS -L/usr/local/ssl/lib";
 	    CPPFLAGS="-I/usr/local/ssl/include $CPPFLAGS";
 	    AC_TRY_LINK_FUNC(SSL_new, AC_MSG_RESULT([/usr/local/ssl]),
-		AC_MSG_RESULT([no]); break))
+		LIBS="$old_LIBS -lgnutls-openssl"
+		CFLAGS="$old_CFLAGS"
+		CPPFLAGS="$old_CPPFLAGS"
+		AC_TRY_LINK_FUNC(SSL_new, AC_MSG_RESULT([gnutls]),
+		    AC_MSG_RESULT([no]); break)))
 	dnl Red Hat 9 and Yellow Dog Linux have ssl.h in a standard place,
 	dnl but it depends on krb5.h which isn't in a standard place.
 	AC_MSG_CHECKING(for ssl kerberos dependency)
@@ -311,9 +316,12 @@ if test "$enable_ssl" = "yes"; then
 	else
 	    AC_MSG_RESULT([no])
 	fi
-	AC_CHECK_HEADER(openssl/ssl.h, , break)
-	AC_DEFINE(HAVE_SSL)
-	ok=1
+	AC_CHECK_HEADER(openssl/ssl.h, ok=1,
+	    [AC_CHECK_HEADERS([gnutls/openssl.h], [ok=1])])
+	if test "$ok" = "1"; then
+	    AC_DEFINE(HAVE_SSL)
+            AC_CHECK_FUNCS(ERR_peek_error)
+	fi
 	break
     done
     if test "$ok" = "0"; then
@@ -587,13 +595,13 @@ fi
 dnl The "right" way of using program_transform_name, program_prefix, and
 dnl program_suffix expects you to use AC_ARG_PROGRAM here and do transformation
 dnl in the Makefile, but we want the values now, so we do it ourselves.
-EXENAME="tf"
+EXENAME="tf" PROGNAME="tf"
 test "${program_prefix}" != "NONE" && EXENAME="${program_prefix}${EXENAME}"
 test "${program_suffix}" != "NONE" && EXENAME="${EXENAME}${program_suffix}"
 if test "${program_transform_name}" != "NONE"; then
     EXENAME=`echo "${EXENAME}" | sed "${program_transform_name}"`
 fi
-LIBNAME="${EXENAME}-lib"
+LIBNAME="${PROGNAME}-lib"
 
 if test "$enable_symlink" = "no"; then
     SYMLINK=""
@@ -604,6 +612,7 @@ else
 fi
 
 AC_SUBST(EXENAME)
+AC_SUBST(PROGNAME)
 AC_SUBST(LIBNAME)
 AC_SUBST(SYMLINK)
 

@@ -1,0 +1,25 @@
+Source: tf5
+Section: net
+Priority: optional
+Maintainer: Russ Allbery <rra@debian.org>
+Standards-Version: 3.8.3
+Build-Depends: debhelper (>= 7.0.50~), autoconf, libgnutls-dev,
+ libncurses5-dev, libpcre3-dev, zlib1g-dev
+Build-Conflicts: libssl-dev
+Homepage: http://tinyfugue.sourceforge.net/
+Vcs-Git: http://archives.eyrie.org/software/git/tf5.git
+
+Package: tf5
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Suggests: spell
+Description: text-based MU* and chatserver client
+ TinyFugue is a text-based, line-based client designed for connecting to
+ most flavors of MU* servers (TinyMUSH, TinyMUX, LP, Diku, etc.) or any
+ telnet-based chatserver.  It includes support for 256-color terminals,
+ MCCP versions 1 and 2, a powerful trigger and scripting language, and
+ many other features.
+ .
+ This package is the current development version of TinyFugue (major
+ version 5).  For the current stable version (major version 4), install
+ the "tf" package instead.

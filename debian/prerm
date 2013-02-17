@@ -1,0 +1,12 @@
+#! /bin/sh
+
+set -e
+
+# Share nicely with TinyFugue 4.x.
+if [ "$1" = "remove" ] || [ "$1" = "deconfigure" ] ; then
+    update-alternatives --remove tf /usr/bin/tf5
+fi
+
+#DEBHELPER#
+
+exit 0

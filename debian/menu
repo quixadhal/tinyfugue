@@ -1,0 +1,6 @@
+?package(tf5):\
+  needs="text"\
+  section="Applications/Network/Communication"\
+  title="TinyFugue 5"\
+  hints="MUD,MUSH,MU*"\
+  command="/usr/bin/tf5"

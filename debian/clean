@@ -1,0 +1,8 @@
+Makefile
+config.log
+config.status
+configure
+src/TF_LIBDIR.build
+src/tfconfig.h
+src/tfdefs.h
+tf-lib/tf-help.idx

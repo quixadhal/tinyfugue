@@ -1,0 +1,126 @@
+tf5 (5.0beta8-4) unstable; urgency=low
+
+  * Update debhelper compatibility level to V7.
+    - Use debhelper rule minimization with overrides.
+    - List extra files to remove in debian/clean.
+    - Install README via debian/docs instead of dh_installdocs argument.
+    - Add ${misc:Depends} dependency.
+  * Remove the tf5. prefix from packaging files.  We only generate one
+    binary package and will for the forseeable future, so no need for the
+    package prefix.
+  * Remove old conflict on the pre-alternatives version of tf, which was
+    older than what released with oldstable.
+  * Update standards version to 3.8.3 (no changes required).
+
+ -- Russ Allbery <rra@debian.org>  Mon, 24 Aug 2009 16:59:34 -0700
+
+tf5 (5.0beta8-3) unstable; urgency=low
+
+  * Build with SSL support using the GnuTLS OpenSSL compatibility layer.
+    (Linking against OpenSSL directly isn't allowed since TinyFugue is
+    under the GPL without an exception.)
+  * Remove all modified and created files in debian/rules clean.  The
+    upstream distclean wasn't comprehensive.
+  * Update standards version to 3.8.0 (no changes required).
+
+ -- Russ Allbery <rra@debian.org>  Mon, 30 Jun 2008 20:03:05 -0700
+
+tf5 (5.0beta8-2) unstable; urgency=low
+
+  * Correct the patch for format handling on 64-bit platforms.  Patch
+    from JP Sugarbroad.  (Closes: #478602)
+
+ -- Russ Allbery <rra@debian.org>  Tue, 29 Apr 2008 17:44:10 -0700
+
+tf5 (5.0beta8-1) unstable; urgency=low
+
+  * New maintainer.  (Closes: #465935)
+  * New upstream release.  (Closes: #457011)
+    - Incorporated all Debian bug fix patches except DESTDIR support.
+  * Apply bug fix from upstream tracker for format handling that mostly
+    affects 64-bit platforms.
+  * Revert several groff-specific modifications to the man page to keep it
+    closer to the upstream version.
+  * Overhaul the build system.
+    - Stop using CDBS and its patch system.  (Closes: #424205)
+    - Stop including detached debugging symbols.  Most packages don't do
+      this and I don't think it's worth the disk space.
+    - Pass configure the right options for cross builds.
+  * Change package section to net, matching the installation path, and
+    mention chatservers in the package description.
+  * Add a menu file.
+  * Add a watch file.
+  * Add Homepage and Vcs-Git control fields.
+  * Remove extraneous comments in postinst and prerm and run both in more
+    situations, not only configure and remove.
+  * Clean up build dependencies.
+  * Rewrite debian/copyright using my standard format and include
+    additional upstream credits and the PCRE license (included upstream
+    but not used for Debian builds).
+  * Update standards version to 3.7.3 (no changes required).
+  * Update debhelper compatibility level to V5 (no changes required).
+
+ -- Russ Allbery <rra@debian.org>  Mon, 18 Feb 2008 10:16:32 -0800
+
+tf5 (5.0beta7-2) unstable; urgency=low
+
+  * Tell dh_strip to preserve debugging symbols stripped from the
+    executable image so that they can be used via GDB's readlink
+    mechanism (and, of course, ship them).
+  * Added patch 002_strstr_needle_in_haystack, which fixes the 'calling
+    replace with an empty match pattern causes an infinite loop'
+    problem.
+  * Cleaned up manpage to comply with modern (Unicode-aware) groff
+    guidelines.
+
+ -- Joel Aelwyn <fenton@debian.org>  Mon, 17 Oct 2005 14:04:56 -0600
+
+tf5 (5.0beta7-1) unstable; urgency=low
+
+  * New upstream version.
+    - Build with the system PCRE library now that doing so is supported.
+    - Updated patches (several no longer needed, the rest all required
+      significant modifications).
+    - Update description to mention (the new) 256-color terminal support.
+    - Upstream removed the manpage; import a copy of the last known state
+      from version 5.0b6, rather than have Yet Another Manpage-less Program
+      in Debian.
+  * Updated to Standards-Version 3.6.2.0 (no changes)
+  * Incorporate a fix for the /fg command on 64-bit systems by Zephaniah
+    E. Hull (Closes: #327448)
+
+ -- Joel Aelwyn <fenton@debian.org>  Tue, 20 Sep 2005 02:34:31 -0600
+
+tf5 (5.0beta6-4) experimental; urgency=low
+
+  * Added a Suggests on the 'spell' package, which provides a binary
+    compatible with the spell.tf module.
+
+ -- Joel Aelwyn <fenton@debian.org>  Mon, 31 Jan 2005 15:49:13 -0700
+
+tf5 (5.0beta6-3) experimental; urgency=low
+
+  * Disable OpenSSL support until Ken Keys either includes a license
+    exception for linking GPL and OpenSSL code, or support for GNU TLS
+    is available. Unfortunately, the OpenSSL emulation layer in GNU TLS
+    isn't sufficient to handle what TF uses. (No bug)
+  * Fixed alternatives handling to include manpage as a slave link, and
+    moved manpage to tf5.1.gz natively. (No bug)
+  * Added patch to fix SEGV fault in strip_attr() function. (No bug yet;
+    filed request with upstream for proper fix)
+  * Updated to Standards-Version 3.6.1.0 (no changes)
+
+ -- Joel Aelwyn <fenton@debian.org>  Tue, 25 Jan 2005 13:52:49 -0700
+
+tf5 (5.0beta6-2) experimental; urgency=low
+
+  * Added alternatives management for /usr/bin/tf, priority 15 (below
+    'tf', which is the current stable release). (No bug)
+
+ -- Joel Aelwyn <fenton@debian.org>  Tue,  4 Jan 2005 14:28:37 -0700
+
+tf5 (5.0beta6-1) experimental; urgency=low
+
+  * Initial packaging (Closes: #265974)
+
+ -- Joel Aelwyn <fenton@debian.org>  Fri, 20 Aug 2004 14:05:11 -0600

@@ -1,0 +1,81 @@
+Debianized by Joel Aelwyn <fenton@debian.org>                   2004-08-20
+Adopted by Russ Allbery <rra@debian.org>                        2008-02-17
+
+It was downloaded from:
+
+    <http://tinyfugue.sourceforge.net/>
+
+Upstream author:
+
+    Ken Keys ("Hawkeye") <kkeys@ucsd.edu>
+
+Additional upstream credits:
+
+    Support for OS/2 was contributed by Andreas Sahlbach (asa@stardiv.de).
+
+    TinyFugue versions 1.5.3 and earlier were written by Greg Hudson
+    ("Explorer_Bob"), without whom I would have never gotten into this
+    mess.
+
+    TinyFugue was intially derived from tinytalk, a unix client written by
+    Anton Rang ("Tarrant") and modified by Leo Plotkin ("Grod").
+
+    Additional thanks to Jeff Prothero ("Cynbe"), Bruce Sterling Woodcock
+    ("Bruce"), David Moore ("OliverJones"), Ben Jackson ("Ben"), the
+    mudders of glia.biostr.washington.edu, and everyone else who tested,
+    found bugs, or came up with suggestions, and to Jim Lick ("Jingoro")
+    for providing tcp.com services.
+
+Debian packaging copyright:
+
+    Original Debian packaging Copyright ©2004 by Joel Baker.  Work by Joel
+    Baker had no explicit license.  Presumably that work may be
+    redistributed under the same terms as TinyFugue itself.
+
+    Changes by Russ Allbery are copyright 2008 Russ Allbery and may be
+    redistributed and/or modified under the terms of the GNU General
+    Public License as published by the Free Software foundation; either
+    version 2 of the License, or (at your option) any later version.
+
+Copyright and license:
+
+    TinyFugue is Copyright (C) 1993, 1994, 1995, 1996, 1997, 1998, 1999,
+    2002, 2003, 2004, 2005, 2006-2007 Ken Keys.
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or (at
+    your option) any later version.
+
+    This program is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    General Public License for more details.
+
+The full text of the GNU General Public License version 2 is avialable on
+Debian systems in /usr/share/common-licenses/GPL-2.
+
+The upstream source also contains a copy of PCRE 2.08, which is covered by
+the following copyright and license:
+
+    Copyright (c) 1997-1999 University of Cambridge
+
+    Permission is granted to anyone to use this software for any purpose
+    on any computer system, and to redistribute it freely, subject to the
+    following restrictions:
+
+    1. This software is distributed in the hope that it will be useful,
+       but WITHOUT ANY WARRANTY; without even the implied warranty of
+       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+    2. The origin of this software must not be misrepresented, either by
+       explicit claim or by omission.
+
+    3. Altered versions must be plainly marked as such, and must not be
+       misrepresented as being the original software.
+
+    4. If PCRE is embedded in any software that is released under the GNU
+       General Purpose Licence (GPL), then the terms of that licence shall
+       supersede any condition above with which it is incompatible.
+
+This copy of PCRE is not used when building the Debian package.

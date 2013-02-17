@@ -1,0 +1,3 @@
+* Undo the nasty configure hack to keep the tf-lib library directory name
+  the same while still changing the binary name to tf5 and find a cleaner
+  way to do this that can be submitted upstream.
