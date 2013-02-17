@@ -2327,6 +2327,9 @@ list commands
   Wrapping will be done in the log file only if the [1m%{wraplog}[22;0m [1mvariable[22;0m is 
   "on".  
 
+  ANSI sequences will be recorded in the log file only if the [1m%{ansi_log}[22;0m [1mvariable[22;0m
+  is "on".
+
   Logging is disabled by default.  The default value of [1m${LOGFILE}[22;0m is 
   "tiny.log".  
 
@@ -8933,6 +8936,11 @@ Special global variables
           (dtime) The number of seconds that [1malert[22;0m text is displayed on the 
           [1mstatus line[22;0m.  See [1mtfio[22;0m.  
 
+#ansi_log
+#%ansi_log
+  [1mansi_log[22m=off 
+          (flag) Enable ANSI sequences in log files.  See also: [1m/log[22;0m.  
+
 #background
 #%background
   [1mbackground[22m=on 
@@ -9199,6 +9207,16 @@ Special global variables
   [1mlogin[22m=on 
           (flag) Enable [1mautomatic login[22;0m [1mhook[22;0m.  (See: [1mautomatic login[22;0m, [1mhooks[22;0m, 
           [1m/world[22;0m) 
+
+#log_prefix
+#%log_prefix
+  [1mlog_prefix[22m="[%t] "
+          Prefixed applied to log file entries, %t is the timestamp.  See also: [1m/log[22;0m.  
+
+#log_time_format
+#%log_time_format
+  [1mlog_time_format[22m="%H:%M:%S"
+          Timestamp format used by [1m%log_prefix[22;0m.  See also: [1m/log[22;0m.  
 
 #lp
 #%lp
